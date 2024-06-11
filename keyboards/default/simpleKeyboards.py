@@ -12,6 +12,9 @@ StartLesson = ReplyKeyboardMarkup(
 HomeKeyboards = ReplyKeyboardMarkup(
     keyboard=[
         [
+            KeyboardButton("Kompyuter savodxonligi")
+        ],
+        [
             KeyboardButton("Grafik dizayn"),
             KeyboardButton("Dasturlash")
         ],
@@ -50,8 +53,8 @@ dasturlashKeyboard = ReplyKeyboardMarkup(
 FrontendKeyboard = ReplyKeyboardMarkup(
     keyboard=[
         [
-            KeyboardButton("Html"),
-            KeyboardButton("Css")
+            KeyboardButton("HTML"),
+            KeyboardButton("CSS")
         ],
         [
             KeyboardButton("JavaScript"),

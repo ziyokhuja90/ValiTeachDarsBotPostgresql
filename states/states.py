@@ -4,6 +4,7 @@ class States(StatesGroup):
     fronEnd = State()
     backEnd = State()
     grafikDizayn = State()
+    Kompyuter= State()
 
 
 class BackButtonStates(StatesGroup):

@@ -62,8 +62,8 @@
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a href="index.html" class="app-brand-link">
-              <span class="app-brand-logo demo">
+            <a href="{% url "HomePage" %}" class="app-brand-link">
+              {% comment %} <span class="app-brand-logo demo">
                 <svg
                   width="25"
                   viewBox="0 0 25 42"
@@ -89,6 +89,7 @@
                       id="path-5"
                     ></path>
                   </defs>
+
                   <g id="g-app-brand" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                     <g id="Brand-Logo" transform="translate(-27.000000, -15.000000)">
                       <g id="Icon" transform="translate(27.000000, 15.000000)">
@@ -117,8 +118,8 @@
                     </g>
                   </g>
                 </svg>
-              </span>
-              <span class="app-brand-text demo menu-text fw-bolder ms-2">Sneat</span>
+              </span> {% endcomment %}
+              <span class="app-brand-text  menu-text fw-bolder  " style="font-size:25px;">ValiTeach Bot</span>
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -170,11 +171,23 @@
           <img class="menu-icon " src="{% static "icons/adobe-illustrator.png" %}" alt="">
         <div data-i18n="Form Elements">Adobe Illustrator</div>
       </a>
-  </li>      <li class="menu-item">
+  </li>      
+  <li class="menu-item">
     <a href="{% url "Coraldraw" %}" class="menu-link ">
         <img class="menu-icon " src="{% static "icons/corel.png" %}" alt="">
       <div data-i18n="Form Elements">CorelDraw</div>
     </a>
+</li>
+<li class="menu-header small text-uppercase">
+  <span class="menu-header-text">Kompyuter Savodxonligi</span>
+</li>
+<li class="menu-item">
+  <a href="{% url "Kompyuter" %}" class="menu-link ">
+    <i class='menu-icon tf-icons bx bx-laptop'></i>
+
+      {% comment %} <img class="menu-icon " src="{% static "icons/corel.png" %}" alt=""> {% endcomment %}
+    <div data-i18n="Form Elements">Kompyuter Savodxonligi</div>
+  </a>
 </li>
     </ul>
         </aside>

@@ -33,7 +33,11 @@ urlpatterns = [
     path("Coraldraw/" , views.Coraldraw_view , name="Coraldraw" ),
     path("<id>/CoraldrawUpdate/" , views.update_Coraldraw , name="UpdateCoraldraw"),
     path('<id>/CoraldrawDelete/', views.delete_Coraldraw , name="Coraldrawdelete"),
-
+    # Kompyuter savodxonligi
+    path("KompyuterAddlesson/" , views.createKompyuter_view , name="CreateKompyuter"),
+    path("Kompyuter/" , views.Kompyuter_view , name="Kompyuter" ),
+    path("<id>/KompyuterUpdate/" , views.update_Kompyuter , name="UpdateKompyuter"),
+    path('<id>/KompyuterDelete/', views.delete_Kompyuter , name="Kompyuterdelete"),
 
     path("<id>/update/" , views.update_view , name="Update"),
     path('<id>/delete/', views.delete_view  , name="delete"),

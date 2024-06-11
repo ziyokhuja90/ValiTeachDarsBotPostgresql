@@ -1,6 +1,6 @@
 from django.shortcuts import render , redirect , get_object_or_404 , HttpResponseRedirect
 from .models import Product
-from .forms import ProductForm , GrafikDizaynProductForm , CustomLoginForm , SearchForm
+from .forms import ProductForm , SimpleProductForm , CustomLoginForm , SearchForm
 
 from django.contrib.auth import authenticate, login , logout
 # from django.contrib.auth.forms import AuthenticationForm
@@ -78,7 +78,6 @@ def createFrontEnd_view(request):
         
         if form.is_valid():
             # Inspect form data
-            print("something")
             form.instance.category_name = "Front-end"
             form.save()
             return redirect('FronEnd_view')
@@ -220,7 +219,7 @@ def Photoshop_view(request):
 def createPhotoshop_view(request):
     context = {}
     if request.method == 'POST':
-        form = GrafikDizaynProductForm(request.POST)
+        form = SimpleProductForm(request.POST)
         
         if form.is_valid():
             # Inspect form data
@@ -232,7 +231,7 @@ def createPhotoshop_view(request):
             print("xatolik")
             print("Form is invalid. Errors:", form.errors)
     else:
-        form = GrafikDizaynProductForm()
+        form = SimpleProductForm()
     context['form'] = form
     return render(request, "addLesson.html", context)
 
@@ -245,7 +244,7 @@ def update_Photoshop(request, id):
     obj = get_object_or_404(Product, id = id)
  
     # pass the object as instance in form
-    form = GrafikDizaynProductForm(request.POST or None, instance = obj)
+    form = SimpleProductForm(request.POST or None, instance = obj)
  
     # save the data from the form and
     # redirect to detail_view
@@ -291,7 +290,7 @@ def Illustrator_view(request):
 def createIllustrator_view(request):
     context = {}
     if request.method == 'POST':
-        form = GrafikDizaynProductForm(request.POST)
+        form = SimpleProductForm(request.POST)
         
         if form.is_valid():
             # Inspect form data
@@ -303,7 +302,7 @@ def createIllustrator_view(request):
             print("xatolik")
             print("Form is invalid. Errors:", form.errors)
     else:
-        form = GrafikDizaynProductForm()
+        form = SimpleProductForm()
     context['form'] = form
     return render(request, "addLesson.html", context)
 
@@ -316,7 +315,7 @@ def update_Illustrator(request, id):
     obj = get_object_or_404(Product, id = id)
  
     # pass the object as instance in form
-    form = GrafikDizaynProductForm(request.POST or None, instance = obj)
+    form = SimpleProductForm(request.POST or None, instance = obj)
  
     # save the data from the form and
     # redirect to detail_view
@@ -349,7 +348,7 @@ def Coraldraw_view(request):
 def createCoraldraw_view(request):
     context = {}
     if request.method == 'POST':
-        form = GrafikDizaynProductForm(request.POST)
+        form = SimpleProductForm(request.POST)
         
         if form.is_valid():
             # Inspect form data
@@ -360,7 +359,7 @@ def createCoraldraw_view(request):
         else:
             print("Form is invalid. Errors:", form.errors)
     else:
-        form = GrafikDizaynProductForm()
+        form = SimpleProductForm()
     context['form'] = form
     return render(request, "addLesson.html", context)
 
@@ -373,7 +372,7 @@ def update_Coraldraw(request, id):
     obj = get_object_or_404(Product, id = id)
  
     # pass the object as instance in form
-    form = GrafikDizaynProductForm(request.POST or None, instance = obj)
+    form = SimpleProductForm(request.POST or None, instance = obj)
  
     # save the data from the form and
     # redirect to detail_view
@@ -394,8 +393,61 @@ def delete_Coraldraw(request, id):
     return redirect("Coraldraw")
 
 
+# Kompyuter savodxonligi ---------------------------------------------------------------------------------------------------   
 
+def Kompyuter_view(request):
+    Products = Product.objects.filter(category_name="Kompyuter savodxonligi" , subcategory_name="Kompyuter savodxonligi")
+    context = {
+        "Products":Products
+    }
+    return render(request , "kompyuter.html" ,context )
 
+def createKompyuter_view(request):
+    context = {}
+    if request.method == 'POST':
+        form = SimpleProductForm(request.POST)
+        
+        if form.is_valid():
+            # Inspect form data
+            form.instance.category_name = "Kompyuter savodxonligi"
+            form.instance.subcategory_name = "Kompyuter savodxonligi"
+            form.save()
+            return redirect('Kompyuter')
+        else:
+            print("Form is invalid. Errors:", form.errors)
+    else:
+        form = SimpleProductForm()
+    context['form'] = form
+    return render(request, "addLesson.html", context)
+
+def update_Kompyuter(request, id):
+    # dictionary for initial data with 
+    # field names as keys
+    context ={}
+ 
+    # fetch the object related to passed id
+    obj = get_object_or_404(Product, id = id)
+ 
+    # pass the object as instance in form
+    form = SimpleProductForm(request.POST or None, instance = obj)
+ 
+    # save the data from the form and
+    # redirect to detail_view
+    if form.is_valid():
+        form.save()
+        return redirect("Kompyuter")
+    context["form"] = form
+ 
+    return render(request, "updateLesson.html", context)
+
+def delete_Kompyuter(request, id):
+    Products = Product.objects.all()
+
+    # fetch the object related to passed id
+    obj = get_object_or_404(Product, id = id)
+
+    obj.delete()
+    return redirect("Kompyuter")
 
 
 

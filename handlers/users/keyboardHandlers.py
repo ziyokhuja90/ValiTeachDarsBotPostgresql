@@ -223,3 +223,36 @@ async def lessonKeyboards(message : types.Message , state : FSMContext):
 
 
 
+@dp.message_handler(Text("Kompyuter savodxonligi"))
+async def KompyuterSavodxonligi(message : types.Message):
+    keyboard = await LessonKeyboards("Kompyuter savodxonligi","Kompyuter savodxonligi")
+    await States.Kompyuter.set()
+    
+    await message.answer(message.text , reply_markup=keyboard)
+
+
+
+
+# IsKompyuterLesson = bool()
+
+@dp.message_handler(state=States.Kompyuter)
+async def GrakifdizaynlessonHandler(message : types.Message , state: FSMContext):
+    
+    if message.text == "🔙 Orqaga":
+        await message.answer("Orqaga", reply_markup=simpleKeyboards.HomeKeyboards)
+        await state.finish
+    else:
+        text = f""
+        try:
+            if len(message.text) != 7:
+                lesson = await db.select_lessonLessonNumber(lesson_number=message.text[0] , category="Kompyuter savodxonligi" , subcategory="Kompyuter savodxonligi")
+            else:
+                lesson = await db.select_lessonLessonNumber(lesson_number=message.text[:2] , category="Kompyuter savodxonligi" , subcategory="Kompyuter savodxonligi")
+            text += f"Kompyuter savodxonligi Darslari | {message.text} | {lesson[0]['description']} \n\n"
+            text += f"Youtube — {lesson[0]['youtube']} \n\n"
+            text += f"Telegram — {lesson[0]['telegram']} \n\n"
+
+            await bot.send_video(message.from_user.id , video=lesson[0]["videoId"] , caption=text , )
+        # await state.finish()
+        except:
+            pass
