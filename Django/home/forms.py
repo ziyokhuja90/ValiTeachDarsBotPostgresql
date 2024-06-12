@@ -66,11 +66,8 @@ class SimpleProductForm(ModelForm):
             'youtube': forms.TextInput(attrs={'class': 'form-control w-100'}),
             # 'category_name': forms.TextInput(attrs={'class': 'form-control w-100'}),
             # 'subcategory_name': forms.TextInput(attrs={'class': 'form-control w-100'}),
-
         }
         def clean_videoId(self):
             videoId = self.cleaned_data.get('videoId')
         # Add custom validation logic if needed
             return videoId
-
-    
